@@ -1,0 +1,35 @@
+<%- include("partials/header.ejs") %>
+<body style="background-image: none;">
+    <div class="container">
+        <br>
+        <h1 class="display-5 fst-italic">Compose</h1>
+        <form action="/edit" method="post">
+            <div class="form-group" style="padding: 5px;">
+                <label for="category" class="form-label">Category:</label>
+                <input type="text" class="form-control" name="category" id="category" autocomplete="off" value="<%=category%>">
+            </div>
+            <div class="form-group" style="padding: 5px;">
+                <label for="jist" class="form-label">Jist:</label>
+                <textarea type="text" class="form-control" name="jist" id="jist" rows="1"></textarea>
+                <script type="text/javascript">
+                    document.getElementById("jist").value += "<%= jist%>"
+                </script>
+            </div>  
+            <div class="form-group" style="padding: 5px;">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class="form-control" name="title" autocomplete="off" value="<%=title%>">
+            </div>
+            <div class="form-group" style="padding: 5px;">
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control" id="content" name="content" id="content" rows="10"></textarea>
+                <script type="text/javascript">
+                    document.getElementById("content").value += "<%= content%>"
+                </script>
+            </div>
+            <input type="hidden" name="id" value="<%= id%>">
+            <div class="form-group" style="padding: 5px;">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+<%- include("partials/footer.ejs") %>

@@ -1,0 +1,48 @@
+<%- include("partials/header.ejs") %>
+    <div class="bg-image" style="background-image: url('images/blogBg.png'); background-attachment:fixed; background-size: cover;background-position: center ;
+    height: max-content; padding: 0%;">
+        <main class="container">
+            <div class="p-4 p-md-5 mb-4 rounded" style="height:35em;margin-top: 10px; background-image: url(images/backgroundCover.png);background-position: center;background-size: cover;">
+              <div class="col-md-6 px-0" style="position: relative;top:20%">
+                <h1 class="display-4 fst-italic text-white">Welcome to My Personal Blog</h1>
+                <p class="lead my-4 text-white" style="width: 75%">A place where I share learnings, experiences, finds, hardships, opinions, thoughts and so much more.</p>
+                <p class="lead mb-0 text-white"><span href="#" class="text-white fw-bold">Happy Reading</span></p>
+              </div>
+            </div>
+            <div class="row mb-2">
+                <%if(posts.length > 0) {%>
+                    <%posts.forEach(function(val){%>
+                        <div class="col-md-6">
+                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                <div class="col p-4 d-flex flex-column position-static">
+                                    <strong class="d-inline-block mb-2 text-primary"><%= val.category %></strong>
+                                    <h3 class="mb-0"><%= val.title %></h3>
+                                    <div class="mb-1 text-muted"><%= val.month %> <%= val.date %>, <%= val.year %></div>
+                                    <br><br>
+                                    <%if(user === "root"){%>
+                                        <div class="btn-group" role="group">
+                                            <form method="post" action="/update">
+                                                <button type="submit" class="btn btn-primary" style="margin-right: 10px;" value="<%= val._id %>" name="button">Edit</button>
+                                            </form>
+                                            <form method="post" action="/delete">
+                                                <button type="submit" class="btn btn-danger" value="<%= val._id %>" name="button">Delete</button>
+                                            </form>
+                                        </div>
+                                    <%}else{%>
+                                        <form method="get" action="/posts/<%= val._id %>">
+                                            <button type="submit" class="btn btn-primary" style="margin-right: 10px;" value="<%= val._id %>" name="button">Continue reading</button>
+                                        </form>
+                                    <%}%>
+                                </div>
+                                <div class="col-auto d-none d-lg-block">
+                                    <img src="data:<%= val.contentType %>;base64,<%= val.imageBase64 %>" width="250" height="250">
+                                </div>
+                            </div>
+                        </div>
+                    <%})%>
+                <%}%>
+            </div>
+        </main>
+    </div>
+    
+<%- include("partials/footer.ejs") %>

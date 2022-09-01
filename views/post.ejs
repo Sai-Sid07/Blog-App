@@ -1,0 +1,16 @@
+<%- include("partials/header.ejs") %>
+<body style="background-image: none;">
+    <div class="container d-flex flex-column align-items-center justify-content-center" style="margin-top: 50px;">
+        <h2 class="justify-content-center"><%= title %></h2>
+        <p class="text-muted align-items-start justify-content-start">
+            <i class="bi bi-person-circle"></i> Sai Sidharth - <%= month %> <%= date %>, <%= year %></p>
+        <div>
+            <br>
+            <img src="data:<%= contentType %>;base64,<%= imageBase64 %>" class="img-fluid" alt="Responsive image" height="600" width="700">           
+            <br>
+            <br>
+        </div>
+        <h5  class="justify-content-center"><%= jist %></h5>
+        <p><%= body%></p>
+  </div>
+<%- include("partials/footer.ejs") %>
